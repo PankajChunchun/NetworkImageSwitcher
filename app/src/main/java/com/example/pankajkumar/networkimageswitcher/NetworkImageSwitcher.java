@@ -13,16 +13,27 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
 /**
+ * {@link ImageSwitcher} which is designed to handle network images.
+ *
  * Created by Pankaj Kumar on 25/05/18.
- * pankaj@kloojj.com
+ * pankaj.arrah@gmail.com
  * EAT | DRINK | CODE
  */
 public class NetworkImageSwitcher extends ImageSwitcher {
 
+    /**
+     * A Listener which can be used to show loader while downloading images from internet.
+     */
     public interface ImageStateListener {
 
+        /**
+         * Image loading form network has been started.
+         */
         void onStartLoading();
 
+        /**
+         * Image loading done. This callback will be notified in success and failure cases both.
+         */
         void onStopLoading();
     }
 
@@ -36,7 +47,11 @@ public class NetworkImageSwitcher extends ImageSwitcher {
         super(context, attrs);
     }
 
-
+    /**
+     * Set image from given <code>fromUrl</code>
+     *
+     * @param fromUrl - From where image will be loaded
+     */
     public void setImage(String fromUrl) {
 
         if (mImageStateListener != null) {
@@ -73,6 +88,9 @@ public class NetworkImageSwitcher extends ImageSwitcher {
         showNext();
     }
 
+    /**
+     * Set {@link ImageStateListener} to know about start and finish state of Image loading.
+     */
     public void setImageStateListener(
             final ImageStateListener imageStateListener) {
         mImageStateListener = imageStateListener;
